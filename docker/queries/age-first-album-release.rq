@@ -1,0 +1,31 @@
+<textarea id="age-first-album-release">
+      PREFIX sc: <http://purl.org/science/owl/sciencecommons/>
+      PREFIX : <http://localhost:3030/spotify_songs/>
+      PREFIX sch: <https://schema.org/>
+      PREFIX dbo: <http://dbpedia.org/ontology/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+      SELECT ?artistName (MIN(?releaseYear) AS ?firstAlbumYear) (SAMPLE(?dob) AS ?dateOfBirth)
+      WHERE {
+        SERVICE <http://localhost:3030/spotify_songs/> {
+          ?track a sch:MusicRecording.
+            ?track sch:byArtist ?artist.
+            ?track sch:inAlbum ?album.
+          ?album a sch:MusicAlbum.
+          OPTIONAL {?album :releaseYear ?releaseYear}.
+          ?artist a sch:MusicGroup.
+          OPTIONAL {?artist :name ?artistName}.
+        }
+
+        # Query DBpedia for the artist's date of birth
+        SERVICE <http://dbpedia.org/sparql> {
+          ?dbpediaArtist a dbo:MusicalArtist;
+                          foaf:name ?artistName ;
+                          dbo:birthDate ?dob .
+          FILTER (datatype(?dob) = xsd:date)
+        }
+      }
+      GROUP BY ?artistName
+      ORDER BY ?artistName
+    </textarea>

@@ -1,0 +1,112 @@
+@prefix :       <http://localhost:3333/> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sch:    <https://schema.org/> .
+
+sch:MusicEntity rdf:type rdfs:Class .
+
+sch:MusicRecording rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:MusicEntity .
+
+sch:MusicAlbum rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:MusicEntity .
+
+sch:MusicGroup rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:MusicEntity .
+
+sch:MusicPlaylist rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:MusicEntity .
+
+:PlaylistGenre rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:MusicEntity .
+
+:PlaylistSubGenre rdf:type rdfs:Class ;
+        rdfs:subClassOf sch:PlaylistGenre .
+
+:name rdf:type rdf:Property ;
+        rdfs:domain sch:MusicGroup ;
+        rdfs:range xsd:Literal .
+
+:byArtist rdf:type rdf:Property ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range sch:MusicGroup .
+
+sch:genre rdf:type rdf:Property ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range :PlaylistGenre, :PlaylistSubGenre .
+
+sch:headline rdf:type rdf:Property ;
+        rdfs:domain sch:MusicEntity ;
+        rdfs:range xsd:Literal .
+
+sch:inAlbum rdf:type rdf:Property ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range sch:MusicAlbum .
+
+sch:inPlaylist rdf:type rdf:Property ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range sch:MusicPlaylist .
+
+:hasAttribute rdf:type rdf:Property ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range sch:int, sch:float .
+
+:duration_ms rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:int .
+
+:has_speach rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_accoustic rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_danceable rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_energetic rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_intrumental rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_live rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:is_loud rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .
+
+:key rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:int .
+
+:mode rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:int .
+
+:popularity rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:int .
+
+:tempo rdf:type rdf:Property ;
+        rdfs:subPropertyOf :hasAttribute ;
+        rdfs:domain sch:MusicRecording ;
+        rdfs:range xsd:float .

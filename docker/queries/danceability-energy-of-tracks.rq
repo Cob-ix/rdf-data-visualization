@@ -1,0 +1,9 @@
+PREFIX : <http://localhost:3333/>
+PREFIX sch: <https://schema.org/>
+
+SELECT ?track ?is_danceable ?is_energetic
+WHERE {
+  ?track a sch:MusicRecording;
+         :is_danceable ?is_danceable;
+         :is_energetic ?is_energetic .
+}

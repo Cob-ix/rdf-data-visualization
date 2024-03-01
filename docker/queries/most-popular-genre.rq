@@ -1,0 +1,8 @@
+PREFIX sch: <https://schema.org/>
+
+SELECT ?genre (COUNT(?track) AS ?count)
+WHERE {
+  ?track sch:genre ?genre .
+}
+GROUP BY ?genre
+ORDER BY DESC(?count)

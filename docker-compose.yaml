@@ -1,0 +1,59 @@
+version: '3.8'
+services:
+  fuseki:
+    build:
+      context: ./docker/fuseki
+      dockerfile: Dockerfile
+    environment:
+      ADMIN_PASSWORD: password
+      #ASSEMBLER: /fuseki/configuration/assembler.ttl
+    volumes:
+      - ./data:/fuseki/databases
+      - ./fuseki-data:/staging
+      #- ./assembler.ttl:/fuseki/configuration/assembler.ttl
+    ports:
+      - "3030:3030"
+    entrypoint: 
+      - "./fuseki-server"
+      - "--file=/fuseki/databases/spotify_songs.ttl"
+      - "/spotify_songs"
+
+  # nginx_proxy:
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - fuseki
+
+#  streamlit-app:
+#    build:
+#      context: ./docker/webserver/
+#       dockerfile: ./Dockerfile
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - fuseki
+#     volumes:
+#       - ./docker/webserver/:/app
+#     entrypoint: 
+#       - "streamlit"
+#       - "run"
+#       - "./app.py"
+#       - "--server.port=8000"
+
+  d3_webserver:
+    build: 
+      context: ./docker/d3_webserver/
+      dockerfile: Dockerfile  # Assuming your Dockerfile for the JS server is in the root directory
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/d3_webserver/:/usr/src/app  # Mount the project directory to the container
+      - d3_webserver_node_modules:/usr/src/app/node_modules # Mount the node_modules directory to the container
+    depends_on:
+      - fuseki
+  
+volumes:
+  d3_webserver_node_modules:

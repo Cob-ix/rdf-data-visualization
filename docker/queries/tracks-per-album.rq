@@ -1,0 +1,9 @@
+PREFIX : <http://localhost:3333/>
+PREFIX sch: <https://schema.org/>
+
+SELECT ?album (COUNT(?track) AS ?tracksCount)
+WHERE {
+  ?track sch:inAlbum ?album .
+}
+GROUP BY ?album
+ORDER BY DESC(?tracksCount)

@@ -1,0 +1,11 @@
+PREFIX : <http://localhost:3333/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sch: <https://schema.org/>
+
+SELECT ?popularity (COUNT(?track) AS ?numberOfTracks)
+WHERE {
+  ?track a sch:MusicRecording;
+         :popularity ?popularity .
+}
+GROUP BY ?popularity
+ORDER BY ?popularity

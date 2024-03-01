@@ -1,0 +1,10 @@
+PREFIX : <http://localhost:3333/>
+PREFIX sch: <https://schema.org/>
+
+SELECT ?releaseYear (COUNT(?album) AS ?numberOfAlbums)
+WHERE {
+  ?album a sch:MusicAlbum;
+         :releaseYear ?releaseYear .
+}
+GROUP BY ?releaseYear
+ORDER BY ?releaseYear
