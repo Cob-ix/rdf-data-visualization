@@ -327,47 +327,45 @@
       GROUP BY ?artistName
       ORDER BY ?artistName
     </textarea> -->
-  </form>
-  <h1>Spotify songs and playlists analysis</h1>
-  <div>
-    <p>This page is made to get a first look into 30 000 songs extracted from spotify playlists</p>
-    <a href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs">Here is the link to the source dataset available on Kaggle</a>
-  </div>
+    </form>
+    <header>
+      <h1>Spotify Songs and Playlists Analysis</h1>
+      <p>This page provides insights into 30,000 songs extracted from Spotify playlists.</p>
+      <p><a href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs">Source dataset on Kaggle</a></p>
+    </header>
   
-  <h2>Albums first sights</h2>
-  <p>Here is graph that shows the number of album release over year</p>
-  <div id="result_album_release_over_year"></div>
-  <p>2019 is the year with the most releases. In fact, the dataset was created in 2020.</p>
+    <section>
+      <h2>Albums Insights</h2>
+      <p>Number of album releases over the years.</p>
+      <div id="result_album_release_over_year"></div>
+      <p>2019 had the most releases, correlating with the dataset's creation in 2020.</p>
+    </section>
   
-  <h2>Genres first sights</h2>
-  <p>Here is a graph that shows the number of tracks per genre in the dataset</p>
-  <div id="result_most_popular_genre"></div>
-  <p>Edm, rap, r&b, pop, latin and rock are the most common genres</p>
+    <section>
+      <h2>Genres Insights</h2>
+      <p>Number of tracks per genre in the dataset.</p>
+      <div id="result_most_popular_genre"></div>
+      <p>Common genres include EDM, rap, R&B, pop, Latin, and rock.</p>
+    </section>
   
-  <!-- <h2>Age of the artist at their first album release</h2>
-  <div id="age_first_album_release"></div> -->
-
-  <p>You can select multiple genres to compare their average danceability and speachiness</p>
-  <div>
-    <select id="genre-selection" multiple size="10"></select>
-    <button onclick="exec_danceability_speach_by_genre()">Run Analysis</button>
-    <label for="genre-selection">Select genres</label>
-  </div>
-  <h4>Average danceability by genre</h4>
-  <div id="danceability_by_genre"></div>
-  <p>This plot shows the average danceability score of the tracks of the genres by Spotify.</p>
-  <h4>Average speachiness by genre</h4>
-  <div id="speach_by_genre"></div>
-  <p>This plot shows the average speach score of the tracks of the genres given by Spotify.</p>
-
-  <h2>Artist popularity over year</h2>
-  <div>
-    <p>You can search for your prefered artist to plot it's track popularity over the years</p>
-    <label for="artist-search">Search an artist:</label>
-    <input type="text" id="artist-search" oninput="searchArtists()" list="artist-suggestions" />
-    <datalist id="artist-suggestions"></datalist>
-    <button onclick="exec_artist_popularity_over_year()">Run Analysis</button>
-  </div>
-  <div id="artist_popularity_over_year"></div>
- </body>
+    <section>
+      <h3>Compare Genres</h3>
+      <p>Select multiple genres to compare their average danceability and speechiness.</p>
+      <select id="genre-selection" multiple size="10"></select>
+      <button onclick="exec_danceability_speach_by_genre()">Run Analysis</button>
+      <div id="danceability_by_genre"></div>
+      <div id="speach_by_genre"></div>
+    </section>
+  
+    <section>
+      <h2>Artist Popularity Over Years</h2>
+      <p>Search for an artist to display their track popularity over the years.</p>
+      <input type="text" id="artist-search" oninput="searchArtists()" placeholder="Search an artist" list="artist-suggestions" />
+      <datalist id="artist-suggestions"></datalist>
+      <button onclick="exec_artist_popularity_over_year()">Run Analysis</button>
+      <div id="artist_popularity_over_year"></div>
+    </section>
+  
+    <script src="script.js"></script>
+  </body>
 </html>
